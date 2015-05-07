@@ -126,6 +126,7 @@ CREATE TABLE Taches(
 	Objectif CLOB,
 	Resultat CLOB,
 	Charge INT, /*en heurehommes */
+	budget DECIMAL(12,2),
 	dteDebSooner date,
 	dteDebLater date,
 	dteFinSooner date,
