@@ -1,6 +1,8 @@
 package view.project;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
@@ -8,6 +10,7 @@ import java.text.NumberFormat;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -37,7 +40,9 @@ public class JFrameProject extends ProjectView implements ActionListener{
 	
 	private void buildFrame(ProjectModel model){
 		frame = new JFrame();
-		contentPane = new JPanel();
+		contentPane = new JPanel(new BorderLayout());
+		JPanel formulaire = new JPanel(new GridLayout(5,2));
+		
 		
 		format = NumberFormat.getNumberInstance();
 		format.setParseIntegerOnly(true);
@@ -45,25 +50,32 @@ public class JFrameProject extends ProjectView implements ActionListener{
 		format.setMaximumFractionDigits(0);
 		format.setMaximumIntegerDigits(12);
 		
+		formulaire.add(new JLabel("Nom"));
 		nom = new JTextField();
 		nom.setText(model.getName());
-		contentPane.add(nom);
+		formulaire.add(nom);
+		formulaire.add(new JLabel("Responsable"));
 		responsable = new JTextField();
 		responsable.setText(model.getRespnsable());
-		contentPane.add(responsable);
+		formulaire.add(responsable);
+		formulaire.add(new JLabel("Objectif"));
 		objectif = new JTextField();
 		objectif.setText(model.getObjectif());
-		contentPane.add(objectif);
+		formulaire.add(objectif);
+		formulaire.add(new JLabel("Resultats"));
 		resultat = new JTextField();
 		resultat.setText(model.getResultat());
-		contentPane.add(resultat);
+		formulaire.add(resultat);
+		formulaire.add(new JLabel("Budget"));
 		budget = new JFormattedTextField(format);
 		budget.setValue(model.getBudget());
-		contentPane.add(budget);
+		formulaire.add(budget);
+		
+		contentPane.add(formulaire, BorderLayout.CENTER);
 		
 		button = new JButton("Enregistrer");
 		button.addActionListener(this);
-		contentPane.add(button);
+		contentPane.add(button, BorderLayout.SOUTH);
 		
 		frame.setContentPane(contentPane);
 		frame.setTitle("JFrameFieldVolume");
