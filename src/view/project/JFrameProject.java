@@ -45,18 +45,16 @@ public class JFrameProject extends ProjectView implements ActionListener{
 		format.setMaximumFractionDigits(0);
 		format.setMaximumIntegerDigits(12);
 		
-		/*
-		 * private JFormattedTextField nom = null;
-			private JFormattedTextField objectif = null;
-			private JFormattedTextField resultat = null;
-			private JFormattedTextField budget = null;
-		 */
+		nom = new JTextField();
 		nom.setText(model.getName());
 		contentPane.add(nom);
+		responsable = new JTextField();
 		responsable.setText(model.getRespnsable());
 		contentPane.add(responsable);
+		objectif = new JTextField();
 		objectif.setText(model.getObjectif());
 		contentPane.add(objectif);
+		resultat = new JTextField();
 		resultat.setText(model.getResultat());
 		contentPane.add(resultat);
 		budget = new JFormattedTextField(format);

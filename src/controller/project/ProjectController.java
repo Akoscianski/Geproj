@@ -1,6 +1,7 @@
 package controller.project;
 
 import model.project.ProjectModel;
+import view.project.JFrameProject;
 
 public class ProjectController {
 	public ProjectView view = null;
@@ -10,7 +11,7 @@ public class ProjectController {
 	public ProjectController(ProjectModel model){
 		this.model = model;
 		
-		//view = new JFrameProject(this, model.getProject());
+		view = new JFrameProject(this, model);
 		addListenerToModel();
 	}
 	
