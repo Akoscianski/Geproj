@@ -5,8 +5,6 @@ import java.util.LinkedList;
 
 import javax.swing.event.EventListenerList;
 
-import controller.project.ProjectView;
-
 public class ProjectModel {
 	private int id;
 	private String name;
@@ -51,6 +49,22 @@ public class ProjectModel {
 		return this.name;
 	}
 	
+	public String getObjectif(){
+		return this.objectif;
+	}
+	
+	public String getResultat(){
+		return this.resultats;
+	}
+	
+	public float getBudget(){
+		return this.budget;
+	}
+	
+	public String getRespnsable(){
+		return this.responsable;
+	}
+	
 	/*
 	 * ===================================================
 	 *       MUTATEURS
@@ -81,10 +95,10 @@ public class ProjectModel {
 	}
 	
 	
-	public void addVolumeListener(ProjectListener listener){
+	public void addProjectListener(ProjectListener listener){
 		listeners.add(ProjectListener.class, listener);
 	}
-	public void removeVolumeListener(ProjectListener l){
+	public void removeProjectListener(ProjectListener l){
 		 listeners.remove(ProjectListener.class, l);
 	} 
 	public void fireNameChanged(){
