@@ -6,7 +6,8 @@ import model.tache.TacheModel;
 import controller.lot.LotController;
 import controller.project.ProjectController;
 import controller.tache.TacheController;
-
+import model.employe.EmployeModel;
+import controller.employe.EmployeController;
 
 public class Geproj {
 
@@ -25,5 +26,8 @@ public class Geproj {
 		TacheModel tache = new TacheModel();
 		TacheController controllertache = new TacheController(tache);
 		controllertache.displayViews();
+		EmployeModel employe = new EmployeModel();
+		EmployeController employe_controller = new EmployeController(employe);
+		employe_controller.displayViews();
 	}
 }
