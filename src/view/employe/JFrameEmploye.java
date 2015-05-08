@@ -5,7 +5,9 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -25,7 +27,8 @@ public class JFrameEmploye extends EmployeView implements ActionListener{
 	private JTextField nom = null;
 	private JTextField prenom = null;
 	private JTextField competences = null;
-	private JTextField naissance = null;
+	DateFormat format1 = null;
+	private JFormattedTextField naissance = null;
 	private JTextField salaire = null;
 	private JTextField heures_contrat = null;
 	private JButton envoyer = null;
@@ -66,8 +69,9 @@ public class JFrameEmploye extends EmployeView implements ActionListener{
 		competences.setText(model.getCompetences());
 		formulaire.add(competences);
 		
+		format1 = new SimpleDateFormat("dd/MM/yyyy");
 		formulaire.add(new JLabel("Naissance"));
-		naissance = new JTextField();
+		naissance = new JFormattedTextField(format1);
 		naissance.setText(""/*model.getNaissance().toString()*/);
 		formulaire.add(naissance);
 		
@@ -88,7 +92,7 @@ public class JFrameEmploye extends EmployeView implements ActionListener{
 		contentPane.add(envoyer, BorderLayout.SOUTH);
 		
 		frame.setContentPane(contentPane);
-		frame.setTitle("JFrameFieldVolume");
+		frame.setTitle("Nouvel employé");
 		frame.setMinimumSize(new Dimension(640,480));
 		frame.pack();
 	}
@@ -99,8 +103,14 @@ public class JFrameEmploye extends EmployeView implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		String newName = nom.getText();
+		String newPrenom = prenom.getText();
+		String newCompetences = competences.getText();
+		String newBirth = naissance.getText();
+		float newSalaire = Float.parseFloat(salaire.getText());
+		float newHeureContract = Float.parseFloat(heures_contrat.getText());
+		getController().notifyNewEmploye(newName, newPrenom, newCompetences, newBirth, newSalaire, newHeureContract);
+		frame.dispose();
 	}
 	@Override
 	public void display() {

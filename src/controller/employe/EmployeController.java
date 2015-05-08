@@ -1,5 +1,9 @@
 package controller.employe;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import model.employe.EmployeModel;
 import view.employe.JFrameEmploye;
 
@@ -31,4 +35,20 @@ public class EmployeController {
 	public void notifyProjectNameChanged(String name){
 		model.setNom(name);
 	}
+
+	public void notifyNewEmploye(String newName, String newPrenom, String newCompetences, String newBirth, float newSalaire, float newHeureContract) {	
+		model.setNom(newName);
+		model.setPrenom(newPrenom);
+		model.setCompetences(newCompetences);
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			model.setDate(formatter.parse(newBirth));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		model.setHeuresContrat(newHeureContract);
+		model.setSalaire(newSalaire);
+		model.store();
+	}
+
 }

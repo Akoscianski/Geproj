@@ -1,8 +1,16 @@
 package model.employe;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.event.EventListenerList;
+
+import utils.connection.ConnectionBase;
 
 public class EmployeModel {
 	private int idEmploye;
@@ -98,6 +106,21 @@ public class EmployeModel {
 		for(EmployeListener Employelisteners : listenerList){
 			Employelisteners.nameChanged(new EmployeNameChangedEvent(this, getNom()));
 		}
+	}
+
+	public void store() {
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");	
+		Connection con = new ConnectionBase().getConnection();
+		try {
+			Statement stmt = con.createStatement();
+			String requette = "INSERT INTO Employes VALUES (0,'"+this.nom+"','"+this.prenom+"','"+this.competences+"',TO_DATE('"+df.format(this.naissance)+"','dd/mm/yyyy'),"+this.heures_contrat+","+this.salaire+")";
+			System.out.println(requette);
+			ResultSet rs = stmt.executeQuery(requette);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 }
