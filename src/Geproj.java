@@ -1,13 +1,18 @@
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
 
+import model.employe.EmployeModel;
 import model.lot.LotsModel;
 import model.project.ProjectModel;
 import model.tache.TacheModel;
+import utils.connection.ConnectionBase;
+import controller.employe.EmployeController;
 import controller.lot.LotController;
 import controller.project.ProjectController;
 import controller.tache.TacheController;
-import model.employe.EmployeModel;
-import controller.employe.EmployeController;
 
 public class Geproj {
 
@@ -17,6 +22,22 @@ public class Geproj {
 		 * Instancier un contrôleur de ce modèle
 		 * Lancer la vue avec ce contrôleur
 		 */
+		
+		Connection con = new ConnectionBase().getConnection();
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Employes");
+			if(rs.next()){
+				System.out.println("Un résultat a été trouvé.");
+			}else{
+				System.out.println("Aucun résultat trouvé.");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		ProjectModel projet = new ProjectModel();
 		ProjectController controller = new ProjectController(projet);
 		controller.displayViews();
