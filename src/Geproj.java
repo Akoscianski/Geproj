@@ -38,9 +38,9 @@ public class Geproj {
 			e.printStackTrace();
 		}
 		
-		//ProjectModel projet = new ProjectModel();
-		//ProjectController controller = new ProjectController(projet);
-		//controller.displayViews();
+		ProjectModel projet = new ProjectModel();
+		ProjectController controller = new ProjectController(projet);
+		controller.displayViews();
 		//LotsModel lots = new LotsModel();
 		//LotController controllerlot = new LotController(lots);
 		//controllerlot.displayViews();

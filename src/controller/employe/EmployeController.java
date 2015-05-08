@@ -32,9 +32,6 @@ public class EmployeController {
 		view.close();
 	}
 	
-	public void notifyProjectNameChanged(String name){
-		model.setNom(name);
-	}
 
 	public void notifyNewEmploye(String newName, String newPrenom, String newCompetences, String newBirth, float newSalaire, float newHeureContract) {	
 		model.setNom(newName);

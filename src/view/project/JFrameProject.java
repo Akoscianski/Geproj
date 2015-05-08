@@ -14,8 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.employe.ListeEmployesModel;
 import model.project.ProjectModel;
 import model.project.ProjectNameChangedEvent;
+import controller.employe.ListeEmployesController;
 import controller.project.ProjectController;
 import controller.project.ProjectView;
 
@@ -23,11 +25,12 @@ public class JFrameProject extends ProjectView implements ActionListener{
 	private JFrame frame = null;
 	private JPanel contentPane = null;
 	private JTextField nom = null;
-	private JTextField responsable = null;
+	private JLabel responsable = null;
 	private JTextField objectif = null;
 	private JTextField resultat = null;
 	private JFormattedTextField budget = null;
 	private JButton button = null;
+	private JButton chooseEmploye = null;
 	private NumberFormat format = null;
 	
 	public JFrameProject(ProjectController controller){
@@ -54,10 +57,11 @@ public class JFrameProject extends ProjectView implements ActionListener{
 		nom = new JTextField();
 		nom.setText(model.getName());
 		formulaire.add(nom);
-		formulaire.add(new JLabel("Responsable"));
-		responsable = new JTextField();
-		responsable.setText(model.getRespnsable());
+		responsable = new JLabel("Responsable : "+model.getRespnsable());
 		formulaire.add(responsable);
+		chooseEmploye = new JButton("Choisir un responsable");
+		chooseEmploye.addActionListener(this);
+		formulaire.add(chooseEmploye);
 		formulaire.add(new JLabel("Objectif"));
 		objectif = new JTextField();
 		objectif.setText(model.getObjectif());
@@ -89,7 +93,11 @@ public class JFrameProject extends ProjectView implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+		if(arg0.getActionCommand() == "Choisir un responsable"){
+			ListeEmployesModel liste = new ListeEmployesModel();
+			ListeEmployesController controller = new ListeEmployesController(liste);
+			controller.displayViews();
+		}
 		
 	}
 	@Override

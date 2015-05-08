@@ -111,9 +111,10 @@ public class EmployeModel {
 	public void store() {
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");	
 		Connection con = new ConnectionBase().getConnection();
+		System.out.println("Ici : "+this.getNom());
 		try {
 			Statement stmt = con.createStatement();
-			String requette = "INSERT INTO Employes VALUES (0,'"+this.nom+"','"+this.prenom+"','"+this.competences+"',TO_DATE('"+df.format(this.naissance)+"','dd/mm/yyyy'),"+this.heures_contrat+","+this.salaire+")";
+			String requette = "INSERT INTO Employes(idEmploye, nom, prenom, competences, naissance, salaire, heures_contrat) VALUES (0,'"+this.nom+"','"+this.prenom+"','"+this.competences+"',TO_DATE('"+df.format(this.naissance)+"','dd/mm/yyyy'),"+this.heures_contrat+","+this.salaire+")";
 			System.out.println(requette);
 			ResultSet rs = stmt.executeQuery(requette);
 		} catch (SQLException e) {

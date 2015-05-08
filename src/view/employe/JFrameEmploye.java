@@ -56,7 +56,7 @@ public class JFrameEmploye extends EmployeView implements ActionListener{
 		
 		formulaire.add(new JLabel("Nom"));
 		nom = new JTextField();
-		nom.setText(model.getNom());
+		nom.setText("Nom");
 		formulaire.add(nom);
 		
 		formulaire.add(new JLabel("Prenom"));
