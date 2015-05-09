@@ -14,9 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import model.employe.EmployeModel;
 import model.employe.ListeEmployesModel;
 import model.project.ProjectModel;
 import model.project.ProjectNameChangedEvent;
+import model.project.ProjectNewRespEvent;
 import controller.employe.ListeEmployesController;
 import controller.project.ProjectController;
 import controller.project.ProjectView;
@@ -97,6 +99,7 @@ public class JFrameProject extends ProjectView implements ActionListener{
 			ListeEmployesModel liste = new ListeEmployesModel();
 			ListeEmployesController controller = new ListeEmployesController(liste);
 			controller.displayViews();
+			
 		}
 		
 	}
@@ -108,6 +111,21 @@ public class JFrameProject extends ProjectView implements ActionListener{
 	@Override
 	public void close() {
 		frame.dispose();
+		
+	}
+	@Override
+	public void choiceDone(ProjectNewRespEvent pnre) {
+		this.responsable.setText(pnre.getNewResp().getNom());
+		this.responsable.repaint();
+		frame.revalidate();
+		frame.repaint();
+		/*
+		 * 
+		 * ICI, ça ne met pas à jour la frame ....
+		 * Il faudra aussi que ça mette à jour le projet (en metant un responsable de type EmployeModel)
+		 * 
+		 * 
+		 */
 		
 	}
 }

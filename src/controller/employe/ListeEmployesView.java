@@ -1,5 +1,6 @@
 package controller.employe;
 
+import model.employe.EmployeModel;
 import model.employe.ListeEmployesListener;
 
 public abstract class ListeEmployesView implements ListeEmployesListener {
@@ -11,7 +12,7 @@ public abstract class ListeEmployesView implements ListeEmployesListener {
 		this.controller = controller;
 	}
 	
-	public final ListeEmployesController getControler(){
+	public final ListeEmployesController getController(){
 		return this.controller;
 	}
 	

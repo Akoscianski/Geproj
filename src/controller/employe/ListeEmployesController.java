@@ -1,6 +1,7 @@
 package controller.employe;
 
 import view.employe.JFrameListeEmployes;
+import model.employe.EmployeModel;
 import model.employe.ListeEmployesModel;
 
 
@@ -26,6 +27,10 @@ public class ListeEmployesController {
 	
 	public void closeViews(){
 		view.close();
+	}
+
+	public void notifyChoice(EmployeModel e) {
+		model.setChoice(e);
 	}
 	
 }

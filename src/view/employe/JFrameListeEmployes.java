@@ -36,6 +36,7 @@ public class JFrameListeEmployes extends ListeEmployesView implements ActionList
 		liste = new JList(model);
 		contentPane.add(liste, BorderLayout.CENTER);
 		choose = new JButton("Chosir");
+		choose.addActionListener(this);
 		contentPane.add(choose, BorderLayout.SOUTH);
 		
 		frame.setContentPane(contentPane);
@@ -45,7 +46,10 @@ public class JFrameListeEmployes extends ListeEmployesView implements ActionList
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getActionCommand() == "Chosir"){
+			getController().notifyChoice((EmployeModel)liste.getSelectedValue());
+			frame.dispose();
+		}
 		
 	}
 	

@@ -39,6 +39,16 @@ public class EmployeModel {
 		this.Employelisteners = new EventListenerList();
 	}
 	
+	public String toString(){
+		String retour = this.nom+" "+this.prenom;
+		retour += " identifiacation : "+this.idEmploye;
+		retour += " compétences : "+this.competences;
+		retour += " salaire : "+this.salaire;
+		retour += " heures dans le contrat : "+ this.heures_contrat;
+		retour += " date de naissance : "+this.naissance.toString();
+		return retour;
+	}
+	
 	public String getNom() {
 		return this.nom;
 	}
