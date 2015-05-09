@@ -5,15 +5,16 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
-import controller.employe.ListeEmployesController;
-import controller.employe.ListeEmployesView;
 import model.employe.EmployeModel;
 import model.employe.ListeEmployesModel;
+import controller.employe.ListeEmployesController;
+import controller.employe.ListeEmployesView;
 
 public class JFrameListeEmployes extends ListeEmployesView implements ActionListener{
 	private JFrame frame = null;
@@ -26,9 +27,13 @@ public class JFrameListeEmployes extends ListeEmployesView implements ActionList
 		buidFrame(employes);
 	}
 	private void buidFrame(ListeEmployesModel employes) {
+		DefaultListModel<EmployeModel> model = new DefaultListModel<EmployeModel>();
+		for(EmployeModel e : employes.getListe()){
+			model.addElement(e); 
+		}
 		frame = new JFrame("Choisir un employé");
 		contentPane = new JPanel(new BorderLayout());
-		liste = new JList();
+		liste = new JList(model);
 		contentPane.add(liste, BorderLayout.CENTER);
 		choose = new JButton("Chosir");
 		contentPane.add(choose, BorderLayout.SOUTH);
