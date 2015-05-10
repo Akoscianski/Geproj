@@ -8,8 +8,10 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,7 +30,11 @@ public class JFrameEmploye extends EmployeView implements ActionListener{
 	private JTextField prenom = null;
 	private JTextField competences = null;
 	DateFormat format1 = null;
-	private JFormattedTextField naissance = null;
+	//private JFormattedTextField naissance = null;
+	private JComboBox jours;
+	private JComboBox mois;
+	private JComboBox annee;
+	private JPanel date;
 	private JTextField salaire = null;
 	private JTextField heures_contrat = null;
 	private JButton envoyer = null;
@@ -71,9 +77,33 @@ public class JFrameEmploye extends EmployeView implements ActionListener{
 		
 		format1 = new SimpleDateFormat("dd/MM/yyyy");
 		formulaire.add(new JLabel("Naissance"));
-		naissance = new JFormattedTextField(format1);
-		naissance.setText(""/*model.getNaissance().toString()*/);
-		formulaire.add(naissance);
+		date = new JPanel();
+		jours = new JComboBox();
+		for (int i = 1; i<= 31; i++){
+			if(i<10){
+				jours.addItem("0"+i);
+			}else{
+				jours.addItem(i);
+			}
+		}
+		date.add(jours);
+		mois = new JComboBox();
+		for(int i = 1; i< 13; i++){
+			if(i<10){
+				mois.addItem("0"+i);
+			}else{
+				mois.addItem(i);
+			}
+		}
+		date.add(mois);
+		
+		annee = new JComboBox();
+		for(int i=Calendar.getInstance().get(Calendar.YEAR) - 16; i>= 1940; i--){
+			annee.addItem(i);
+		}
+		date.add(annee);
+		
+		formulaire.add(date);
 		
 		formulaire.add(new JLabel("Salaire"));
 		salaire = new JTextField();
@@ -106,7 +136,7 @@ public class JFrameEmploye extends EmployeView implements ActionListener{
 		String newName = nom.getText();
 		String newPrenom = prenom.getText();
 		String newCompetences = competences.getText();
-		String newBirth = naissance.getText();
+		String newBirth = jours.getSelectedItem()+"/"+mois.getSelectedItem()+"/"+annee.getSelectedItem();
 		float newSalaire = Float.parseFloat(salaire.getText());
 		float newHeureContract = Float.parseFloat(heures_contrat.getText());
 		getController().notifyNewEmploye(newName, newPrenom, newCompetences, newBirth, newSalaire, newHeureContract);
