@@ -62,7 +62,7 @@ public class JFrameProject extends ProjectView implements ActionListener{
 		nom = new JTextField();
 		nom.setText(model.getName());
 		formulaire.add(nom);
-		responsable = new JLabel("Responsable : "+model.getRespnsable().toString());
+		responsable = new JLabel("Responsable : "+model.getRespnsable().toStringMini());
 		formulaire.add(responsable);
 		chooseEmploye = new JButton("Choisir un responsable");
 		chooseEmploye.addActionListener(this);
@@ -105,7 +105,6 @@ public class JFrameProject extends ProjectView implements ActionListener{
 		}else{
 			if(arg0.getActionCommand() == "Enregistrer"){
 				frame.dispose();
-				System.out.println("Sortie : "+getController().getModel().getRespnsable().toString());
 			}
 		}
 		
@@ -121,30 +120,13 @@ public class JFrameProject extends ProjectView implements ActionListener{
 		
 	}
 	@Override
-	public void choiceDone(ProjectNewRespEvent pnre) {
-		System.out.println("Hello ");
-		/*
-		((JLabel) frame.getContentPane().getComponent(3)).setText(pnre.getNewResp().getNom());
-		
-		this.responsable.repaint();
-		frame.revalidate();
-		frame.repaint();
-		*/
-		/*
-		 * 
-		 * ICI, ça ne met pas à jour la frame ....
-		 * Il faudra aussi que ça mette à jour le projet (en metant un responsable de type EmployeModel)
-		 * 
-		 * 
-		 */
-		
+	public void choiceDone(ProjectNewRespEvent pnre) {		
 	}
+	
 	@Override
 	public void respChanged(ProjectNameChangedEvent projectNameChangedEvent) {
 		System.out.println("JFrameProjetct - respChanged");
-		this.responsable.setText(model.getRespnsable().toString());
+		this.responsable.setText("responsable : "+model.getRespnsable().toStringMini());
 		this.responsable.repaint();
-		frame.revalidate();
-		frame.repaint();
 	}
 }

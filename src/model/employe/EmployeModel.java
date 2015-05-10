@@ -40,14 +40,16 @@ public class EmployeModel {
 	}
 	
 	public String toString(){
-		System.out.println(this.getNom()+" "+this.getPrenom());
-		String retour = this.nom+" "+this.prenom;
+		String retour = this.nom+" "+this.prenom+"\n";
 		retour += " identifiacation : "+this.idEmploye;
 		retour += " compétences : "+this.competences;
 		retour += " salaire : "+this.salaire;
 		retour += " heures dans le contrat : "+ this.heures_contrat;
 		retour += " date de naissance : "+this.naissance.toString();
 		return retour;
+	}
+	public String toStringMini() {
+		return this.nom+" "+this.prenom;
 	}
 	
 	public int getId(){
