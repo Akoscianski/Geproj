@@ -5,14 +5,11 @@ import java.sql.Statement;
 import java.text.ParseException;
 
 import model.employe.EmployeModel;
-import model.lot.LotsModel;
 import model.project.ProjectModel;
-import model.tache.TacheModel;
 import utils.connection.ConnectionBase;
+import view.MainView;
 import controller.employe.EmployeController;
-import controller.lot.LotController;
 import controller.project.ProjectController;
-import controller.tache.TacheController;
 
 public class Geproj {
 
@@ -38,6 +35,7 @@ public class Geproj {
 			e.printStackTrace();
 		}
 		
+		new MainView();
 		ProjectModel projet = new ProjectModel();
 		ProjectController controller = new ProjectController(projet);
 		controller.displayViews();
