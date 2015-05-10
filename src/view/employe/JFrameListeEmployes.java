@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.ListCellRenderer;
 
 import model.employe.EmployeModel;
 import model.employe.ListeEmployesModel;
@@ -34,6 +35,8 @@ public class JFrameListeEmployes extends ListeEmployesView implements ActionList
 		frame = new JFrame("Choisir un employé");
 		contentPane = new JPanel(new BorderLayout());
 		liste = new JList(model);
+		ListCellRenderer renderer = new ListeEmployeRender();
+	    liste.setCellRenderer(renderer);
 		contentPane.add(liste, BorderLayout.CENTER);
 		choose = new JButton("Chosir");
 		choose.addActionListener(this);

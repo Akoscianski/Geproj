@@ -1,5 +1,6 @@
 package model.employe;
 
+import java.awt.Component;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,6 +9,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.swing.JLabel;
 import javax.swing.event.EventListenerList;
 
 import utils.connection.ConnectionBase;
@@ -40,7 +42,7 @@ public class EmployeModel {
 	}
 	
 	public String toString(){
-		String retour = this.nom+" "+this.prenom+"\n";
+		String retour = this.nom+" "+this.prenom;
 		retour += " identifiacation : "+this.idEmploye;
 		retour += " compétences : "+this.competences;
 		retour += " salaire : "+this.salaire;
@@ -51,6 +53,7 @@ public class EmployeModel {
 	public String toStringMini() {
 		return this.nom+" "+this.prenom;
 	}
+	
 	
 	public int getId(){
 		return this.idEmploye;
@@ -131,7 +134,7 @@ public class EmployeModel {
 		System.out.println("Ici : "+this.getNom());
 		try {
 			Statement stmt = con.createStatement();
-			String requette = "INSERT INTO Employes(idEmploye, nom, prenom, competences, naissance, salaire, heures_contrat) VALUES (0,'"+this.nom+"','"+this.prenom+"','"+this.competences+"',TO_DATE('"+df.format(this.naissance)+"','dd/mm/yyyy'),"+this.heures_contrat+","+this.salaire+")";
+			String requette = "INSERT INTO Employes(idEmploye, nom, prenom, competences, naissance, salaire, heures_contrat) VALUES (0,'"+this.nom+"','"+this.prenom+"','"+this.competences+"',TO_DATE('"+df.format(this.naissance)+"','dd/mm/yyyy'),"+this.salaire+", "+this.heures_contrat+")";
 			ResultSet rs = stmt.executeQuery(requette);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
