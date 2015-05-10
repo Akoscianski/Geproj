@@ -1,10 +1,17 @@
 package model.project;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.util.LinkedList;
 
 import javax.swing.event.EventListenerList;
 
+import oracle.jdbc.OraclePreparedStatement;
+import utils.connection.ConnectionBase;
 import model.employe.EmployeModel;
 
 public class ProjectModel {
@@ -63,7 +70,7 @@ public class ProjectModel {
 		return this.budget;
 	}
 	
-	public EmployeModel getRespnsable(){
+	public EmployeModel getResponsable(){
 		return this.responsable;
 	}
 	
@@ -120,5 +127,35 @@ public class ProjectModel {
 		for(ProjectListener listener : listenerList){
 			listener.respChanged(new ProjectNameChangedEvent(this, getName()));
 		}
+	}
+
+	public void store() {
+		Connection con = new ConnectionBase().getConnection();
+		/*
+		try {
+			Statement stmt = con.createStatement();
+			
+			String requette = "INSERT INTO Projets(idProjet, nom, responsable, objectif, resultat, budget)";
+			requette += "VALUES (0,'"+this.name+"',"+this.responsable.getId()+",'"+this.objectif+"','"+this.resultats+"',"+this.budget+")";
+			System.out.println(requette);
+			ResultSet rs = stmt.executeQuery(requette);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		try {
+	        String sql = "INSERT INTO Projets(idProjet, nom, responsable, objectif, resultat, budget) VALUES ("
+	        		+ "0,'"
+	        		+this.name+"',"
+	        		+this.responsable.getId()+",?,?,"
+	        		+this.budget+")";
+	        PreparedStatement ps = con.prepareStatement(sql);
+	        ((OraclePreparedStatement) ps).setStringForClob(1, this.objectif);
+	        ((OraclePreparedStatement) ps).setStringForClob(2, this.resultats);
+	        ps.execute();
+	        //result = true; //Ya pas compris ce que c'était ça.
+	        } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 	}
 }

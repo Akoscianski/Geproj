@@ -62,7 +62,7 @@ public class JFrameProject extends ProjectView implements ActionListener{
 		nom = new JTextField();
 		nom.setText(model.getName());
 		formulaire.add(nom);
-		responsable = new JLabel("Responsable : "+model.getRespnsable().toStringMini());
+		responsable = new JLabel("Responsable : "+model.getResponsable().toStringMini());
 		formulaire.add(responsable);
 		chooseEmploye = new JButton("Choisir un responsable");
 		chooseEmploye.addActionListener(this);
@@ -104,6 +104,11 @@ public class JFrameProject extends ProjectView implements ActionListener{
 			controller.displayViews();
 		}else{
 			if(arg0.getActionCommand() == "Enregistrer"){
+				String newName = nom.getText();
+				String newObjectif = objectif.getText();
+				String newRes = resultat.getText();
+				float newBudget = Float.parseFloat(budget.getText());
+				getController().notifyNewProject(newName, model.getResponsable(), newObjectif, newRes, newBudget);
 				frame.dispose();
 			}
 		}
@@ -126,7 +131,7 @@ public class JFrameProject extends ProjectView implements ActionListener{
 	@Override
 	public void respChanged(ProjectNameChangedEvent projectNameChangedEvent) {
 		System.out.println("JFrameProjetct - respChanged");
-		this.responsable.setText("responsable : "+model.getRespnsable().toStringMini());
+		this.responsable.setText("responsable : "+model.getResponsable().toStringMini());
 		this.responsable.repaint();
 	}
 }

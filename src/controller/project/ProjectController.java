@@ -40,4 +40,13 @@ public class ProjectController {
 		model.setResponsable(e);
 		System.out.println("ProjectController : setChoice");
 	}
+
+	public void notifyNewProject(String newName, EmployeModel newResp, String newObjectif, String newRes, float newBudget) {
+		model.setName(newName);
+		model.setResponsable(newResp);
+		model.setObjectif(newObjectif);
+		model.setResultats(newRes);
+		model.setBudget(newBudget);
+		model.store();		
+	}
 }
