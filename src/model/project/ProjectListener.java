@@ -6,6 +6,8 @@ public interface ProjectListener extends EventListener {
 	public void nameChanged(ProjectNameChangedEvent event);
 
 	public void choiceDone(ProjectNewRespEvent projectNewRespEvent);
+
+	public void respChanged(ProjectNameChangedEvent projectNameChangedEvent);
 }
 
 

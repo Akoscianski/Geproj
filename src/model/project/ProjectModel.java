@@ -5,12 +5,14 @@ import java.util.LinkedList;
 
 import javax.swing.event.EventListenerList;
 
+import model.employe.EmployeModel;
+
 public class ProjectModel {
 	private int id;
 	private String name;
 	private String objectif;
 	private String resultats;
-	private String responsable; //A changer en Employé
+	private EmployeModel responsable; //A changer en Employé
 	private float budget;
 	private LinkedList<Integer> lots; //A changer en lots
 	
@@ -26,7 +28,7 @@ public class ProjectModel {
 		this.objectif = objectif;
 		this.resultats = resultat;
 		this.budget = budget;
-		this.responsable = new String(""); //Changer en employé
+		this.responsable = new EmployeModel();
 		this.lots = new LinkedList<Integer>(); //Changer en lots
 		
 		this.listeners = new EventListenerList();
@@ -61,7 +63,7 @@ public class ProjectModel {
 		return this.budget;
 	}
 	
-	public String getRespnsable(){
+	public EmployeModel getRespnsable(){
 		return this.responsable;
 	}
 	
@@ -87,8 +89,10 @@ public class ProjectModel {
 	public void setBudget(float budget){
 		this.budget = budget;
 	}
-	public void setResponsable(String resp){ //A changer avec employé
+	public void setResponsable(EmployeModel resp){ //A changer avec employé
 		this.responsable = resp;
+		System.out.println("ProjectModel : setResponsable");
+		fireNewResp();
 	}
 	public void addLot(int lot){ //A changer avec lot
 		this.lots.add(lot);
@@ -106,6 +110,15 @@ public class ProjectModel {
  
 		for(ProjectListener listener : listenerList){
 			listener.nameChanged(new ProjectNameChangedEvent(this, getName()));
+		}
+	}
+	
+	public void fireNewResp(){
+		System.out.println("ProjectModel : fireNewResp()");
+		ProjectListener[] listenerList = (ProjectListener[])listeners.getListeners(ProjectListener.class);
+		 
+		for(ProjectListener listener : listenerList){
+			listener.respChanged(new ProjectNameChangedEvent(this, getName()));
 		}
 	}
 }

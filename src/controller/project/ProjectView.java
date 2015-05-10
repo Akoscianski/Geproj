@@ -1,6 +1,7 @@
 package controller.project;
 
 import model.project.ProjectListener;
+import model.project.ProjectNewRespEvent;
 
 
 public abstract class ProjectView implements ProjectListener {
@@ -18,4 +19,5 @@ public abstract class ProjectView implements ProjectListener {
 	
 	public abstract void display();
 	public abstract void close();
+	
 }

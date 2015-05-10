@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -34,12 +35,14 @@ public class JFrameProject extends ProjectView implements ActionListener{
 	private JButton button = null;
 	private JButton chooseEmploye = null;
 	private NumberFormat format = null;
+	private ProjectModel model = null;
 	
 	public JFrameProject(ProjectController controller){
 		this(controller, null);
 	}
 	public JFrameProject(ProjectController controller, ProjectModel model){
 		super(controller);
+		this.model = model;
 		buildFrame(model);
 	}
 	
@@ -59,7 +62,7 @@ public class JFrameProject extends ProjectView implements ActionListener{
 		nom = new JTextField();
 		nom.setText(model.getName());
 		formulaire.add(nom);
-		responsable = new JLabel("Responsable : "+model.getRespnsable());
+		responsable = new JLabel("Responsable : "+model.getRespnsable().toString());
 		formulaire.add(responsable);
 		chooseEmploye = new JButton("Choisir un responsable");
 		chooseEmploye.addActionListener(this);
@@ -97,9 +100,13 @@ public class JFrameProject extends ProjectView implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getActionCommand() == "Choisir un responsable"){
 			ListeEmployesModel liste = new ListeEmployesModel();
-			ListeEmployesController controller = new ListeEmployesController(liste);
+			ListeEmployesController controller = new ListeEmployesController(this.getController(), liste);
 			controller.displayViews();
-			
+		}else{
+			if(arg0.getActionCommand() == "Enregistrer"){
+				frame.dispose();
+				System.out.println("Sortie : "+getController().getModel().getRespnsable().toString());
+			}
 		}
 		
 	}
@@ -115,10 +122,14 @@ public class JFrameProject extends ProjectView implements ActionListener{
 	}
 	@Override
 	public void choiceDone(ProjectNewRespEvent pnre) {
-		this.responsable.setText(pnre.getNewResp().getNom());
+		System.out.println("Hello ");
+		/*
+		((JLabel) frame.getContentPane().getComponent(3)).setText(pnre.getNewResp().getNom());
+		
 		this.responsable.repaint();
 		frame.revalidate();
 		frame.repaint();
+		*/
 		/*
 		 * 
 		 * ICI, ça ne met pas à jour la frame ....
@@ -127,5 +138,13 @@ public class JFrameProject extends ProjectView implements ActionListener{
 		 * 
 		 */
 		
+	}
+	@Override
+	public void respChanged(ProjectNameChangedEvent projectNameChangedEvent) {
+		System.out.println("JFrameProjetct - respChanged");
+		this.responsable.setText(model.getRespnsable().toString());
+		this.responsable.repaint();
+		frame.revalidate();
+		frame.repaint();
 	}
 }

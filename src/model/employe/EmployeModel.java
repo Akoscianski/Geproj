@@ -41,12 +41,16 @@ public class EmployeModel {
 	
 	public String toString(){
 		String retour = this.nom+" "+this.prenom;
-		retour += " identifiacation : "+this.idEmploye;
-		retour += " compétences : "+this.competences;
-		retour += " salaire : "+this.salaire;
-		retour += " heures dans le contrat : "+ this.heures_contrat;
-		retour += " date de naissance : "+this.naissance.toString();
+		//retour += " identifiacation : "+this.idEmploye;
+		//retour += " compétences : "+this.competences;
+		//retour += " salaire : "+this.salaire;
+		//retour += " heures dans le contrat : "+ this.heures_contrat;
+		//retour += " date de naissance : "+this.naissance.toString();
 		return retour;
+	}
+	
+	public int getId(){
+		return this.idEmploye;
 	}
 	
 	public String getNom() {

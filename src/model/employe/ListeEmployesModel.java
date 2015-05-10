@@ -70,6 +70,7 @@ public class ListeEmployesModel {
 	} 
 	
 	public void fireChoiceDone(){
+		System.out.println("ListeEmployesModel L73 : fireChoiceDone()");
 		ProjectListener[] listenerList = (ProjectListener[])listeners.getListeners(ProjectListener.class);
  
 		for(ProjectListener listener : listenerList){

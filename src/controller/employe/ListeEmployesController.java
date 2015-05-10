@@ -1,5 +1,6 @@
 package controller.employe;
 
+import controller.project.ProjectController;
 import view.employe.JFrameListeEmployes;
 import model.employe.EmployeModel;
 import model.employe.ListeEmployesModel;
@@ -8,11 +9,12 @@ import model.employe.ListeEmployesModel;
 public class ListeEmployesController {
 	public ListeEmployesView view = null;
 	
+	private ProjectController projectController = null;
 	private ListeEmployesModel model = null;
 	
-	public ListeEmployesController(ListeEmployesModel model){
+	public ListeEmployesController(ProjectController projectController, ListeEmployesModel model){
 		this.model = model;
-		
+		this.projectController = projectController;
 		view = new JFrameListeEmployes(this, model);
 		addListenerToModel();
 	}
@@ -30,7 +32,8 @@ public class ListeEmployesController {
 	}
 
 	public void notifyChoice(EmployeModel e) {
-		model.setChoice(e);
+		//model.setChoice(e);
+		projectController.setchoice(e);
 	}
 	
 }
