@@ -36,17 +36,17 @@ public class Geproj {
 		}
 		
 		new MainView();
-		ProjectModel projet = new ProjectModel();
-		ProjectController controller = new ProjectController(projet);
-		controller.displayViews();
+		//ProjectModel projet = new ProjectModel();
+		//ProjectController controller = new ProjectController(projet);
+		//controller.displayViews();
 		//LotsModel lots = new LotsModel();
 		//LotController controllerlot = new LotController(lots);
 		//controllerlot.displayViews();
 		//TacheModel tache = new TacheModel();
 		//TacheController controllertache = new TacheController(tache);
 		//controllertache.displayViews();
-		EmployeModel employe = new EmployeModel();
-		EmployeController employe_controller = new EmployeController(employe);
-		employe_controller.displayViews();
+		//EmployeModel employe = new EmployeModel();
+		//EmployeController employe_controller = new EmployeController(employe);
+		//employe_controller.displayViews();
 	}
 }

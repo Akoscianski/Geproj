@@ -1,0 +1,15 @@
+Fichier d'aide Geproj.
+
+Logiciel : Geproj v0.0.1
+
+Geproj est un logiciel de gestion de projets développé dans le cadre du "Projet CBD" (Projet de conception de Base de donnée) 2014-2015 donnée en IATIC4 à l'ISTY.
+
+Ce Logiciel a été dévellopé par A. Koscianski, E. Galet, J. Gane et K. Camus.
+Ce logiciel est basé sur une base de données Oracle Expresse 11g et sur le langage java.
+
+Les fonctionnalités possibles du logiciel sont :
+	- Insertion d'un employé dans la base de donnée
+	- Création d'un nouveau projet
+	- Association d'un employé en tant que chef de projet
+
+De nombreuses fonctionalités sont encore à implanter.
