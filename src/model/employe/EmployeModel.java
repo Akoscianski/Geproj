@@ -24,7 +24,7 @@ public class EmployeModel {
 	private EventListenerList Employelisteners;
 	
 	public EmployeModel(){
-		this(0,"","","",null,0,0);
+		this(0,"","","",new Date(),0,0);
 	}
 	
 	public EmployeModel(int idEmploye, String nom, String prenom, String competences, Date naissance, float salaire, float heures_contrat){
@@ -40,12 +40,13 @@ public class EmployeModel {
 	}
 	
 	public String toString(){
+		System.out.println(this.getNom()+" "+this.getPrenom());
 		String retour = this.nom+" "+this.prenom;
-		//retour += " identifiacation : "+this.idEmploye;
-		//retour += " compétences : "+this.competences;
-		//retour += " salaire : "+this.salaire;
-		//retour += " heures dans le contrat : "+ this.heures_contrat;
-		//retour += " date de naissance : "+this.naissance.toString();
+		retour += " identifiacation : "+this.idEmploye;
+		retour += " compétences : "+this.competences;
+		retour += " salaire : "+this.salaire;
+		retour += " heures dans le contrat : "+ this.heures_contrat;
+		retour += " date de naissance : "+this.naissance.toString();
 		return retour;
 	}
 	
@@ -92,7 +93,7 @@ public class EmployeModel {
 	}
 	
 	public void setCompetences(String competences) {
-		this.nom = competences;
+		this.competences = competences;
 	}
 	
 	public void setDate(Date naissance) {
@@ -129,7 +130,6 @@ public class EmployeModel {
 		try {
 			Statement stmt = con.createStatement();
 			String requette = "INSERT INTO Employes(idEmploye, nom, prenom, competences, naissance, salaire, heures_contrat) VALUES (0,'"+this.nom+"','"+this.prenom+"','"+this.competences+"',TO_DATE('"+df.format(this.naissance)+"','dd/mm/yyyy'),"+this.heures_contrat+","+this.salaire+")";
-			System.out.println(requette);
 			ResultSet rs = stmt.executeQuery(requette);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

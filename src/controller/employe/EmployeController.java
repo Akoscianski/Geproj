@@ -34,9 +34,15 @@ public class EmployeController {
 	
 
 	public void notifyNewEmploye(String newName, String newPrenom, String newCompetences, String newBirth, float newSalaire, float newHeureContract) {	
+		System.out.println("newName : "+newName);
 		model.setNom(newName);
+		System.out.println("enregistré1 : "+model.getNom());
 		model.setPrenom(newPrenom);
+		System.out.println("enregistré2 : "+model.getNom());
 		model.setCompetences(newCompetences);
+		System.out.println("enregistré3 : "+model.getNom());
+		System.out.println(model.toString());
+		System.out.println("enregistré3 : "+model.getNom());
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			model.setDate(formatter.parse(newBirth));
