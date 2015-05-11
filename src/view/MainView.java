@@ -12,8 +12,10 @@ import javax.swing.JPanel;
 
 import controller.employe.EmployeController;
 import controller.project.ProjectController;
+import controller.ssprojet.SSProjetController;
 import model.employe.EmployeModel;
 import model.project.ProjectModel;
+import model.ssprojet.SSProjetModel;
 
 public class MainView implements ActionListener {
 	JFrame frame;
@@ -32,6 +34,9 @@ public class MainView implements ActionListener {
 		menuFichier = new JMenu("Fichier");
 		menuFichierNouveau = new JMenu("Nouveau");
 		item = new JMenuItem("Nouveau Projet");
+		item.addActionListener(this);
+		menuFichierNouveau.add(item);
+		item = new JMenuItem("Nouveau Sous-Projet");
 		item.addActionListener(this);
 		menuFichierNouveau.add(item);
 		item = new JMenuItem("Nouvel employe");
@@ -57,6 +62,11 @@ public class MainView implements ActionListener {
 			ProjectModel projet = new ProjectModel();
 			ProjectController controller = new ProjectController(projet);
 			controller.displayViews();
+			break;
+		case "Nouveau Sous-Projet" :
+			SSProjetModel ssprojet = new SSProjetModel();
+			SSProjetController ss_projet_controller = new SSProjetController(ssprojet);
+			ss_projet_controller.displayViews();
 			break;
 		case "Nouvel employe" :
 			EmployeModel employe = new EmployeModel();
