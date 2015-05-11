@@ -13,6 +13,8 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import model.employe.EmployeModel;
@@ -29,7 +31,7 @@ public class JFrameProject extends ProjectView implements ActionListener{
 	private JPanel contentPane = null;
 	private JTextField nom = null;
 	private JLabel responsable = null;
-	private JTextField objectif = null;
+	private JTextArea objectif = null;
 	private JTextField resultat = null;
 	private JFormattedTextField budget = null;
 	private JButton button = null;
@@ -68,9 +70,13 @@ public class JFrameProject extends ProjectView implements ActionListener{
 		chooseEmploye.addActionListener(this);
 		formulaire.add(chooseEmploye);
 		formulaire.add(new JLabel("Objectif"));
-		objectif = new JTextField();
+		// créer un nouveau JPanel pour le textArea d'ojectif et lui rajouter le scrollpane
+		objectif = new JTextArea();
+		objectif.setLineWrap(true);
+		objectif.add(new JScrollPane());
 		objectif.setText(model.getObjectif());
 		formulaire.add(objectif);
+		// Fin modifs à faire
 		formulaire.add(new JLabel("Resultats"));
 		resultat = new JTextField();
 		resultat.setText(model.getResultat());

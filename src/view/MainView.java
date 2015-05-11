@@ -10,12 +10,15 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import controller.employe.EmployeController;
-import controller.project.ProjectController;
-import controller.ssprojet.SSProjetController;
 import model.employe.EmployeModel;
+import model.project.ProjectListeModel;
 import model.project.ProjectModel;
 import model.ssprojet.SSProjetModel;
+import view.project.JPanelListeProjets;
+import controller.employe.EmployeController;
+import controller.project.ListeProjetsController;
+import controller.project.ProjectController;
+import controller.ssprojet.SSProjetController;
 
 public class MainView implements ActionListener {
 	JFrame frame;
@@ -29,7 +32,10 @@ public class MainView implements ActionListener {
 		frame = new JFrame("Geproj");
 		frame.setSize(new Dimension(800,600));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		cp = new JPanel();
+		
+		ProjectListeModel model = new ProjectListeModel();
+		ListeProjetsController controller = new ListeProjetsController(model);
+		cp = new JPanelListeProjets(controller, model).getPanel();
 		menu = new JMenuBar();
 		menuFichier = new JMenu("Fichier");
 		menuFichierNouveau = new JMenu("Nouveau");
